@@ -7,6 +7,8 @@ public class Calculator{
     if (text == ""){
       return 0;
     }
-    return -1;
+    else{
+    return Integer.parseInt(text);
+  }
   }
 }
