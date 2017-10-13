@@ -9,8 +9,12 @@ public class Calculator{
     }
     else{
       if (text.contains(",")){
+        int sum = 0;
         String numbers[] = text.split(",");
-        return Integer.parseInt(numbers[0]) + Integer.parseInt(numbers[1]);
+        for (int i = 0; i<numbers.length; i++){
+        sum += Integer.parseInt(numbers[i]);
+      }
+      return sum;
       }
       return Integer.parseInt(text);
   }
