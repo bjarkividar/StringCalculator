@@ -9,7 +9,7 @@ public class Calculator{
     }
     else{
       if (text.contains(",") || text.contains("\n")){
-        
+
         String numbers[] = text.split(",|\\\n");
         if ( checkNegative(numbers)){
           throw new IllegalArgumentException ("Negatives not allowed: "+ getNegatives(numbers));
@@ -31,7 +31,9 @@ public class Calculator{
   private static int sum(String [] numbers){
     int sum = 0;
     for (int i = 0; i<numbers.length; i++){
-      sum += toInt(numbers[i]);
+      if (toInt(numbers[i]) <= 1000){
+        sum += toInt(numbers[i]);
+      }
     }
     return sum;
   }
