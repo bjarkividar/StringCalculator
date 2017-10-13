@@ -12,6 +12,9 @@ public class Calculator{
         int sum = 0;
         String numbers[] = text.split(",|\\\n");
         for (int i = 0; i<numbers.length; i++){
+          if ( ToInt(numbers[i]) < 0){
+            throw new IllegalArgumentException ("Negatives not allowed: "+ numbers[i]);
+          }
         sum += ToInt(numbers[i]);
         }
       return sum;
