@@ -20,6 +20,12 @@ public class Calculator{
   }
   }
   private static int ToInt(String number) {
-    return Integer.parseInt(number);
+    int num;
+    try {
+            num = Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Illegal input",e);
+        }
+    return num;
   }
 }
