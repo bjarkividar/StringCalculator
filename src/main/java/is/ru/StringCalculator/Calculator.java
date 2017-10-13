@@ -11,18 +11,15 @@ public class Calculator{
       if (text.contains(",") || text.contains("\n")){
         int sum = 0;
         String numbers[] = text.split(",|\\\n");
-        for (int i = 0; i<numbers.length; i++){
-          if ( ToInt(numbers[i]) < 0){
-            throw new IllegalArgumentException ("Negatives not allowed: "+ numbers[i]);
-          }
-        sum += ToInt(numbers[i]);
+        if ( checkNegative(numbers)){
+          throw new IllegalArgumentException ("Negatives not allowed: "+ getNegatives(numbers));
         }
-      return sum;
+        return sum(numbers);
       }
-      return ToInt(text);
+      return toInt(text);
   }
   }
-  private static int ToInt(String number) {
+  private static int toInt(String number) {
     int num;
     try {
             num = Integer.parseInt(number);
@@ -30,5 +27,29 @@ public class Calculator{
             throw new IllegalArgumentException("Illegal input",e);
         }
     return num;
+  }
+  private static int sum(String [] numbers){
+    int sum = 0;
+    for (int i = 0; i<numbers.length; i++){
+      sum += toInt(numbers[i]);
+    }
+    return sum;
+  }
+  private static boolean checkNegative(String [] numbers){
+    for (int i = 0; i<numbers.length; i++){
+      if ( toInt(numbers[i]) < 0){
+        return true;
+      }
+    }
+    return false;
+  }
+  private static String getNegatives(String [] numbers){
+    String neg = "";
+    for (int i = 0; i<numbers.length; i++){
+      if ( toInt(numbers[i]) < 0){
+        neg += numbers[i];
+      }
+    }
+    return neg;
   }
 }
