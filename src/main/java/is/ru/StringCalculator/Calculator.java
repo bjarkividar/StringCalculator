@@ -8,9 +8,9 @@ public class Calculator{
       return 0;
     }
     else{
-      if (text.contains(",")){
+      if (text.contains(",") || text.contains("\n")){
         int sum = 0;
-        String numbers[] = text.split(",");
+        String numbers[] = text.split(",|\\\n");
         for (int i = 0; i<numbers.length; i++){
         sum += ToInt(numbers[i]);
         }
