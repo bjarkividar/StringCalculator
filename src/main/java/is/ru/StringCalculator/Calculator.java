@@ -12,11 +12,14 @@ public class Calculator{
         int sum = 0;
         String numbers[] = text.split(",");
         for (int i = 0; i<numbers.length; i++){
-        sum += Integer.parseInt(numbers[i]);
-      }
+        sum += ToInt(numbers[i]);
+        }
       return sum;
       }
-      return Integer.parseInt(text);
+      return ToInt(text);
   }
+  }
+  private static int ToInt(String number) {
+    return Integer.parseInt(number);
   }
 }
