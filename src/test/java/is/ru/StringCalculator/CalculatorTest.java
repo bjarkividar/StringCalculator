@@ -45,7 +45,11 @@ public class CalculatorTest{
     }
   }
   @Test
-  public void BiggerThan1000() {
+  public void testBiggerThan1000() {
     assertEquals(2, Calculator.add("1001,2"));
+  }
+  @Test
+  public void testDelimeter() {
+    assertEquals(3, Calculator.add("//;\n1;2"));
   }
 }

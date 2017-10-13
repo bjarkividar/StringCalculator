@@ -8,9 +8,16 @@ public class Calculator{
       return 0;
     }
     else{
-      if (text.contains(",") || text.contains("\n")){
+      String delimeter = ",|\\\n";
+      String rest = text;
+      if(text.startsWith("/")){
+        String text2[] = text.split("\n",2);
+        delimeter = text2[0].substring(2, text2[0].length() );
+        rest = text2[1];
+      }
+      if (rest.contains(delimeter) || rest.contains(",") || rest.contains("\n")){
 
-        String numbers[] = text.split(",|\\\n");
+        String numbers[] = rest.split(delimeter);
         if ( checkNegative(numbers)){
           throw new IllegalArgumentException ("Negatives not allowed: "+ getNegatives(numbers));
         }
@@ -19,6 +26,7 @@ public class Calculator{
       return toInt(text);
   }
   }
+
   private static int toInt(String number) {
     int num;
     try {
