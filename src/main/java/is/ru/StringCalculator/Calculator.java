@@ -8,16 +8,10 @@ public class Calculator{
       return 0;
     }
     else{
-      String delimeter = ",|\\\n";
-      String rest = text;
-      if(text.startsWith("/")){
-        String text2[] = text.split("\n",2);
-        delimeter = text2[0].substring(2, text2[0].length() );
-        rest = text2[1];
-      }
-      if (rest.contains(delimeter) || rest.contains(",") || rest.contains("\n")){
+      text = changeText(text);
+      if (text.contains(",") || text.contains("\n")){
 
-        String numbers[] = rest.split(delimeter);
+        String numbers[] = text.split(",|\\\n");
         if ( checkNegative(numbers)){
           throw new IllegalArgumentException ("Negatives not allowed: "+ getNegatives(numbers));
         }
@@ -26,7 +20,15 @@ public class Calculator{
       return toInt(text);
   }
   }
-
+  // Change the given delimeter to "," and then adjust the text.
+  private static String changeText(String text) {
+    if(text.startsWith("/")){
+      String text2[] = text.split("\n",2);
+      String del = text2[0].substring(2, text2[0].length() );
+      text = text2[1].replaceAll(del, ",");
+    }
+    return text;
+  }
   private static int toInt(String number) {
     int num;
     try {
